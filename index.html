@@ -3,42 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Etiquetas de Origen — v2</title>
+<title>Etiquetas de Origen — v3 (PNG only)</title>
 
-<!-- Tipografías cálidas -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-<!-- Leaflet + geocoder -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
 
 <style>
 :root{
-  --bg:#0e1d17; --bg2:#0b1713;
-  --ink:#eaffe9; --muted:#cfead8;
-  --accent:#4ec07a; --accent2:#2a9b63; --line:#1e3b2f;
-  --card:#11261e; --chip:#0d2119;
+  --bg:#0e1d17; --bg2:#0b1713; --ink:#eaffe9; --muted:#cfead8;
+  --accent:#4ec07a; --accent2:#2a9b63; --line:#1e3b2f; --card:#11261e;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0; color:var(--ink); background:linear-gradient(180deg,var(--bg),var(--bg2) 60%);
-  font-family:Quicksand,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-}
-.app{max-width:1200px; margin:18px auto; padding:14px;}
+body{margin:0;color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2) 60%);
+  font-family:Quicksand,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+.app{max-width:1200px;margin:18px auto;padding:14px}
 .header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .logo{width:42px;height:42px;border-radius:12px;background:
  radial-gradient(80% 80% at 25% 30%,#78f0b0 0 60%,transparent 61%),
  radial-gradient(80% 80% at 70% 70%,#1a6a45 0 60%,transparent 61%), var(--accent2);
-box-shadow:0 8px 24px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.07);}
-.header h1{margin:0;font-size:clamp(1.25rem,2.5vw,1.8rem);font-weight:700;letter-spacing:.2px}
+ box-shadow:0 8px 24px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.07)}
+.header h1{margin:0;font-size:clamp(1.25rem,2.5vw,1.8rem);font-weight:700}
 
 .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
-@media (max-width: 980px){ .grid{grid-template-columns:1fr;} }
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
 
 .card{background:linear-gradient(180deg,var(--card),#0f221b);
-border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.35);overflow:hidden}
+  border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.35);overflow:hidden}
 .card h2{margin:0;padding:12px 14px;font-size:1rem;background:linear-gradient(180deg,rgba(78,192,122,.12),transparent);border-bottom:1px solid var(--line)}
 .card .body{padding:12px}
 
@@ -57,7 +51,6 @@ border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 24px rgba(0,0,
 .meta b{display:block;color:#d2ffe7;font-size:.8rem;margin-bottom:2px}
 
 hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,transparent);margin:10px 0}
-
 .badge{font-size:.8rem;color:#d7ffe8;background:#0c261b;border:1px dashed #205c40;padding:6px 10px;border-radius:999px}
 
 /* ETIQUETA (A5 aprox) */
@@ -70,12 +63,6 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
   border:1px solid var(--line); border-radius:18px; padding:16px; position:relative;
   box-shadow:0 8px 18px rgba(0,0,0,.35);
 }
-.sheet:before, .sheet:after{
-  content:""; position:absolute; inset:auto auto 16px 16px; width:68px; height:68px; opacity:.25;
-  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="%2376d6a8" stroke-width="1.2"><path d="M7 21c-4-4 0-9 5-9 0-5 5-9 9-5" /><path d="M5 19c-3-3 0-7 4-7 0-4 4-7 7-4"/></svg>') no-repeat center/contain;
-}
-.sheet:after{inset:16px 16px auto auto; transform:scaleX(-1)}
-
 .brand{display:flex;gap:12px;align-items:center;margin-bottom:10px}
 .brand-mark{width:42px;height:42px;border-radius:12px;background:
   radial-gradient(80% 80% at 25% 25%,#72f0ad 0 55%,transparent 56%),
@@ -83,38 +70,19 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
   box-shadow:0 6px 16px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.08)}
 .brand h3{margin:0;font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.3px;
   font-size:clamp(1.2rem,2.2vw,1.6rem)}
-
-.canvas{
-  display:grid; grid-template-columns: 1.1fr .9fr; gap:14px; align-items:start;
-}
-@media (max-width: 980px){ .canvas{grid-template-columns: 1fr; } }
-
+.canvas{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;align-items:start}
+@media (max-width:980px){.canvas{grid-template-columns:1fr}}
 .mapwrap{position:relative}
-.mapimg{
-  width:100%; border-radius:16px; border:1px solid var(--line);
-  box-shadow:0 10px 24px rgba(0,0,0,.35);
-}
-.mapbadge{
-  position:absolute;right:10px;top:10px;padding:6px 10px;border-radius:999px;
-  background:#0f261d;border:1px solid #2a7e58;font-size:.8rem;color:#d7ffe8
-}
-
+.mapimg{width:100%; border-radius:16px; border:1px solid var(--line); box-shadow:0 10px 24px rgba(0,0,0,.35)}
 .kv{display:grid;gap:8px}
 .tile{background:#0d231b;border:1px solid var(--line);border-radius:12px;padding:10px}
 .tile b{display:block;color:#d7ffe8;font-size:.82rem;margin-bottom:2px}
 .subtitle{color:#c4ead6;margin:.2rem 0 .6rem;font-size:1.02rem}
 .title{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.3px;font-size:1.5rem;margin:0 0 .2rem}
-.footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;color:#9bd8bd}
 .note{font-size:.8rem;color:#aee3c7}
 
-/* PRINT: solo la hoja */
-@media print{
-  body{background:white}
-  .app > :not(.print-area){display:none !important}
-  .sheet{box-shadow:none;border:0;margin:0;padding:0;background:white}
-  .sheet:before,.sheet:after{display:none}
-  @page{size:A5;margin:8mm}
-}
+/* PRINT: nada, solo por si alguien hace Ctrl+P accidental — pero ya no hay botón */
+@media print{ @page{size:A5;margin:8mm} }
 </style>
 </head>
 <body>
@@ -132,7 +100,7 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
         <div id="map" aria-label="Mapa OSM interactivo"></div>
         <div class="row" style="margin-top:8px">
           <button id="btnLocate" class="btn secondary">Usar mi ubicación</button>
-          <span class="badge">Tip: haz clic en el mapa para poner/ mover el pin.</span>
+          <span class="badge">Tip: clic en el mapa para poner / mover el pin.</span>
         </div>
         <div class="meta">
           <div><b>Latitud</b><span id="latOut">—</span></div>
@@ -156,17 +124,18 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
           </div>
         </div>
         <div class="row" style="margin-top:10px">
-          <button id="btnGenerar" class="btn">Generar etiqueta</button>
-          <button id="btnImprimir" class="btn secondary">Imprimir / PDF</button>
-          <button id="btnPNG" class="btn secondary" title="Alternativa rápida">Descargar PNG</button>
+          <button id="btnGenerar" class="btn">Generar etiqueta (PNG)</button>
+          <button id="btnPNG" class="btn secondary" title="Descarga como imagen">Descargar PNG</button>
         </div>
-        <p class="note" style="margin:6px 0 0">Departamento/Municipio: Nominatim (OSM) · Altitud: Open-Meteo (fallback: OpenTopoData) · Clima 1991–2020: Open-Meteo.</p>
+        <p class="note" style="margin:6px 0 0">
+          Dep/Mun: Nominatim (OSM) · Altitud: Open-Meteo (fallback: OpenTopoData) · Clima 1991–2020: Open-Meteo.
+        </p>
       </div>
     </section>
 
     <!-- ETIQUETA -->
-    <section class="card print-area">
-      <h2>2) Vista previa de tu etiqueta (A5)</h2>
+    <section class="card">
+      <h2>2) Vista previa de tu etiqueta</h2>
       <div class="body">
         <div class="poster">
           <div class="sheet" id="sheet">
@@ -176,8 +145,8 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
             </div>
             <div class="canvas" id="canvasLabel">
               <div class="mapwrap">
-                <img id="imgStaticMap" class="mapimg" alt="Mapa de la ubicación">
-                <span class="mapbadge" id="badgeCoords">—</span>
+                <!-- NOTA: crossorigin para permitir PNG -->
+                <img id="imgStaticMap" class="mapimg" alt="Mapa de la ubicación" crossorigin="anonymous">
               </div>
               <div>
                 <div class="title" id="outProducto">Producto</div>
@@ -199,7 +168,6 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
   </div>
 </div>
 
-<!-- LIBRERÍAS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
@@ -208,50 +176,45 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#21563e,
 <script>
 const $ = s => document.querySelector(s);
 
-// Salidas etiqueta
+// Etiqueta
 const outMarca = $('#outMarca'), outProducto = $('#outProducto'), outOrigen = $('#outOrigen');
 const outDpto = $('#outDpto'), outMuni = $('#outMuni'), outAlt = $('#outAlt'), outTmean = $('#outTmean'), outFecha = $('#outFecha');
-const badgeCoords = $('#badgeCoords'), imgStatic = $('#imgStaticMap');
+const imgStatic = $('#imgStaticMap');
 
-// Meta cruda
+// Meta cruda (no se imprime)
 const latOut = $('#latOut'), lonOut = $('#lonOut');
 
-// Fecha humana
 outFecha.textContent = new Date().toLocaleDateString('es-CO',{year:'numeric',month:'long',day:'numeric'});
 
 // ---------- MAPA ----------
 const map = L.map('map', { zoomControl: true }).setView([4.65,-74.1], 6);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
 
-// Geocoder (buscador)
+// Geocoder
 if (L.Control && L.Control.geocoder){
-  const geocoder = L.Control.geocoder({ defaultMarkGeocode:false, placeholder:'Buscar lugar…' })
+  L.Control.geocoder({ defaultMarkGeocode:false, placeholder:'Buscar lugar…' })
     .on('markgeocode', e => {
-      const c = e.geocode.center; setLatLon(c.lat, c.lng); map.setView(c, 14); placeMarker(c);
+      const c = e.geocode.center; map.setView(c, 14); placeMarker(c);
     }).addTo(map);
 }
 
-// Marcador + eventos
+// Marcador
 let marker = null;
 function placeMarker(latlng){
   if(!marker){
     marker = L.marker(latlng,{draggable:true}).addTo(map);
-    marker.on('dragend', () => {
-      const {lat,lng} = marker.getLatLng(); setLatLon(lat,lng); refreshStatic();
-    });
+    marker.on('dragend', () => { const {lat,lng} = marker.getLatLng(); setLatLon(lat,lng); });
   }else{
     marker.setLatLng(latlng);
   }
   setLatLon(latlng.lat, latlng.lng);
-  refreshStatic();
 }
-map.on('click', e => { placeMarker(e.latlng); });
+map.on('click', e => placeMarker(e.latlng));
 
-document.getElementById('btnLocate').onclick = () => {
+$('#btnLocate').onclick = () => {
   if(!navigator.geolocation){ alert('Tu navegador no permite geolocalización.'); return; }
   navigator.geolocation.getCurrentPosition(p=>{
-    const {latitude, longitude} = p.coords;
-    const ll = L.latLng(latitude, longitude);
+    const ll = L.latLng(p.coords.latitude, p.coords.longitude);
     map.setView(ll, 15); placeMarker(ll);
   }, ()=> alert('No fue posible obtener tu ubicación.'));
 };
@@ -259,12 +222,10 @@ document.getElementById('btnLocate').onclick = () => {
 function setLatLon(lat, lon){
   latOut.textContent = Number(lat).toFixed(6);
   lonOut.textContent = Number(lon).toFixed(6);
-  badgeCoords.textContent = `${Number(lat).toFixed(5)}, ${Number(lon).toFixed(5)}`;
 }
 
 // ---------- DATOS ABIERTOS ----------
 async function getReverse(lat, lon){
-  // Nominatim – OSM
   const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&addressdetails=1&zoom=12&accept-language=es`;
   const r = await fetch(url, {headers:{'Accept':'application/json'}, cache:'no-store'});
   if(!r.ok) throw new Error('Nominatim error');
@@ -277,7 +238,6 @@ async function getReverse(lat, lon){
 }
 
 async function getElevation(lat, lon){
-  // Primario: Open-Meteo Elevation
   try{
     const u = `https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`;
     const r = await fetch(u, {cache:'no-store'}); if(r.ok){
@@ -285,7 +245,6 @@ async function getElevation(lat, lon){
       if(j?.elevation?.[0] != null) return Math.round(j.elevation[0]);
     }
   }catch{}
-  // Fallback: OpenTopoData (ETOPO1)
   try{
     const u = `https://api.opentopodata.org/v1/etopo1?locations=${lat},${lon}`;
     const r = await fetch(u, {cache:'no-store'}); if(r.ok){
@@ -298,7 +257,6 @@ async function getElevation(lat, lon){
 }
 
 async function getTMean(lat, lon){
-  // Open-Meteo Climate (promedio mensual 1991–2020)
   const u = `https://climate-api.open-meteo.com/v1/climate?latitude=${lat}&longitude=${lon}&start_year=1991&end_year=2020&temperature_2m_mean=1`;
   const r = await fetch(u, {cache:'no-store'});
   if(!r.ok) return null;
@@ -311,26 +269,49 @@ async function getTMean(lat, lon){
   return null;
 }
 
-// ---------- MAPA ESTÁTICO “LINDO” ----------
+// ---------- MAPA ESTÁTICO (con fallback local) ----------
 function staticMapURL(lat, lon, z=14, w=900, h=620){
-  // Servicio público OSM StaticMap — estilizado ligero + marcador
-  // Nota: para uso intensivo conviene cambiar a un proveedor con API key.
   const base = 'https://staticmap.openstreetmap.de/staticmap.php';
   const params = new URLSearchParams({
-    center:`${lat},${lon}`, zoom:z, size:`${w}x${h}`,
-    // marcador verde claro
-    markers:`${lat},${lon},lightgreen1`
+    center:`${lat},${lon}`, zoom:z, size:`${w}x${h}`, markers:`${lat},${lon},lightgreen1`
   });
   return `${base}?${params.toString()}`;
 }
-function refreshStatic(){
-  const lat = parseFloat(latOut.textContent), lon = parseFloat(lonOut.textContent);
-  if(Number.isFinite(lat) && Number.isFinite(lon)){
-    imgStatic.src = staticMapURL(lat, lon);
-  }
+const MAP_FALLBACK_SVG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#2a6e52"/><stop offset="100%" stop-color="#153c2b"/>
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g)"/>
+  <g filter="url(#s)">
+    <circle cx="450" cy="310" r="140" fill="#1d4e3a" opacity=".4"/>
+    <circle cx="450" cy="310" r="90" fill="#143526" opacity=".6"/>
+    <path d="M450 230c-40 0-72 32-72 72 0 38 28 69 65 72v35h14v-35c37-3 65-34 65-72 0-40-32-72-72-72z"
+          fill="#e8fff0"/>
+    <circle cx="450" cy="302" r="24" fill="#2a9b63" stroke="#0f241b" stroke-width="4"/>
+  </g>
+</svg>`);
+
+let mapReadyForPng = false;
+function loadStaticMap(lat, lon){
+  mapReadyForPng = false;
+  imgStatic.crossOrigin = 'anonymous';
+  imgStatic.onload = () => { mapReadyForPng = true; };
+  imgStatic.onerror = () => {
+    // Fallback ilustrado que siempre permite PNG
+    imgStatic.removeAttribute('crossorigin');
+    imgStatic.src = MAP_FALLBACK_SVG;
+    mapReadyForPng = true;
+  };
+  imgStatic.src = staticMapURL(lat, lon);
 }
 
-// ---------- PIPELINE DE GENERACIÓN ----------
+// ---------- PIPELINE ----------
 document.getElementById('btnGenerar').onclick = async () => {
   const marca = document.getElementById('inpMarca').value.trim() || 'Tu marca';
   const prod  = document.getElementById('inpProducto').value.trim() || 'Producto';
@@ -344,45 +325,48 @@ document.getElementById('btnGenerar').onclick = async () => {
     alert('Selecciona primero un punto en el mapa.'); return;
   }
 
-  // Reverse
+  // Datos
   let dpto='—', muni='—';
-  try{ const r = await getReverse(lat,lon); dpto=r.dpto; muni=r.muni; }catch{ /* graceful */ }
+  try{ const r = await getReverse(lat,lon); dpto=r.dpto; muni=r.muni; }catch{}
   outDpto.textContent = dpto; outMuni.textContent = muni;
 
-  // Altitud
   outAlt.textContent = '…';
   const elev = await getElevation(lat,lon);
   outAlt.textContent = (elev==null) ? '—' : `${elev} m s.n.m.`;
 
-  // Temperatura media
   outTmean.textContent = '…';
   const tmean = await getTMean(lat,lon);
   outTmean.textContent = (tmean==null) ? '—' : `${tmean} °C`;
 
-  // Origen compuesto
   const origen = [lugar, muni, dpto].filter(Boolean).filter(x=>x!=='—').join(' · ');
   outOrigen.textContent = origen || '—';
 
-  // Mapa central
-  refreshStatic();
+  // Mapa (con fallback si CORS no deja)
+  loadStaticMap(lat, lon);
 };
 
-// ---------- Exportar ----------
-document.getElementById('btnImprimir').onclick = () => window.print();
+// ---------- PNG ----------
 document.getElementById('btnPNG').onclick = async () => {
   const node = document.getElementById('sheet');
   try{
+    // Si la imagen del mapa aún no está lista, espera un tick corto
+    if(!mapReadyForPng){
+      await new Promise(r => setTimeout(r, 300));
+    }
     const canvas = await html2canvas(node, {useCORS:true,backgroundColor:null,scale:2});
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png'); a.download = 'etiqueta_origen.png'; a.click();
-  }catch{ alert('No se pudo generar PNG. Usa Imprimir/PDF.'); }
+  }catch{
+    alert('No se pudo generar el PNG en este navegador.');
+  }
 };
 
-// Estado inicial (mapa estático “neutro” sobre Bogotá)
+// Inicio
 (function init(){
   const start = L.latLng(4.65,-74.1);
   map.setView(start, 6);
-  refreshStatic();
+  // No cargamos mapa estático hasta que el usuario genere
+  imgStatic.src = MAP_FALLBACK_SVG; // para que siempre se vea algo “lindo” de entrada
 })();
 </script>
 </body>
